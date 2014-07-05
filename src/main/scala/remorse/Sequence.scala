@@ -34,11 +34,11 @@ trait Sequence[S[_]] {
   }
 }
 
-sealed trait ViewL[S[_], A]
-case class EmptyL[S[_], A]() extends ViewL[S, A]
-case class OnL[S[_], A](h: A, t: S[A]) extends ViewL[S, A]
+sealed abstract class ViewL[S[_], A]
+final case class EmptyL[S[_], A]() extends ViewL[S, A]
+final case class OnL[S[_], A](h: A, t: S[A]) extends ViewL[S, A]
 
-sealed trait ViewR[S[_], A]
-case class EmptyR[S[_], A]() extends ViewR[S, A]
-case class OnR[S[_], A](p: S[A], l: A) extends ViewR[S, A]
+sealed abstract class ViewR[S[_], A]
+final case class EmptyR[S[_], A]() extends ViewR[S, A]
+final case class OnR[S[_], A](p: S[A], l: A) extends ViewR[S, A]
 
