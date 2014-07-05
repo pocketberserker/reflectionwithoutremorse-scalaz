@@ -27,9 +27,9 @@ sealed abstract class TConsListInstances {
       override def empty[C[_, _], X]: TConsList[C, X, X] = CNil()
       override def singleton[C[_, _], X, Y](c: C[X, Y]): TConsList[C, X, Y] = cons(c, CNil())
       override def addL[C[_, _], X, Y, Z](l: C[X, Y], r: TConsList[C, Y, Z]): TConsList[C, X, Z] = cons(l, r)
-      override def viewL[C[_, _], X, Y](l: TConsList[C, X, Y]) = //: TViewL[TConsList, C, X, Y] =
+      override def viewL[C[_, _], X, Y](l: TConsList[C, X, Y]) =
         l match {
-          case CNil() => TViewL.tEmptyL
+          case n @ CNil() => TViewL.tEmptyL[TConsList, C, X].cast2(???) // TODO
           case c @ Cons() => TViewL.tOnL(c.l, c.r)
         }
     }
